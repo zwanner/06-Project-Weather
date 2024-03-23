@@ -98,7 +98,7 @@ function renderSearchHistory() {
     for (let i = 0; i < searchHistory.length; i++) {
         const searchItem = document.createElement("button");
         searchItem.textContent = searchHistory[i];
-        searchItem.classList.add("btn", "btn-primary", "m-2", "col");
+        searchItem.classList.add("btn", "btn-primary", "m-2", "col", "shadow-sm");
         historyEl.appendChild(searchItem);
     }
 }
@@ -117,7 +117,7 @@ function renderWeather() {
     const weatherCardTitle = document.createElement("h5");
     weatherCardTitle.classList.add("card-title");
     weatherCardTitle.textContent = recentSearch;
-    weatherCardTitle.classList.add("fw-medium", "mb-3", "bg-primary", "text-white", "rounded-3", "p-2", "text-center");
+    weatherCardTitle.classList.add("fw-medium", "mb-3", "bg-primary", "text-white", "rounded-3", "p-2", "text-center", "shadow-sm");
     if (recentSearch === null) {
         weatherCardTitle.classList.remove("bg-primary");
         localStorage.setItem("recentSearch", "Philadelphia");
@@ -169,6 +169,7 @@ function getWeather() {
             console.log(data);
             displayWeather(data);
         });
+        
 }
 
 //fetch 5 day forecast
@@ -184,7 +185,6 @@ function getForecast() {
             console.log(data);
             displayForecast(data);
         });
-
 }
 
 //display current weather
@@ -235,6 +235,7 @@ function displayWeather(data) {
     weatherCardBody.appendChild(cardBodyTemp);
     weatherCardBody.appendChild(cardBodyHumidity);
     weatherCardBody.appendChild(cardBodyWindSpeed);
+
 }
 
 //display 5 day forecast
@@ -254,7 +255,7 @@ function displayForecast(data) {
             forecastCard.appendChild(forecastCardBody);
 
             const forecastCardTitle = document.createElement("h5");
-            forecastCardTitle.classList.add("card-title", "fs-6", "fw-bold", "bg-primary", "text-white", "rounded-3", "p-1", "text-center");
+            forecastCardTitle.classList.add("card-title", "fs-6", "fw-bold", "bg-primary", "text-white", "rounded-3", "p-1", "text-center", "shadow-sm");
             forecastCardTitle.textContent = dayjs(data.list[i].dt_txt).format("MM/DD");
             forecastCardBody.appendChild(forecastCardTitle);
 
@@ -304,8 +305,6 @@ function changeLocation(event) {
 setColorMode();
 renderSearchHistory();
 renderWeather();
-
-
 
 //event listeners
 colormodeButton.addEventListener("click", switchColorMode);
