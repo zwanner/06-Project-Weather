@@ -139,7 +139,7 @@ function renderWeather() {
 //fetch longitude and latitude
 function getLongLat() {
     const recentSearch = localStorage.getItem("recentSearch");
-    const apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${recentSearch}&limit=1&appid=${apiKey}`;
+    const apiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${recentSearch}&limit=1&appid=${apiKey}`;
     fetch(apiUrl)
         .then(function (response) {
             return response.json();
