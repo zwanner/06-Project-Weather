@@ -256,9 +256,13 @@ function displayForecast(data) {
     const forecastDiv = document.createElement("div");
     forecastDiv.classList.add("row", "justify-content-center", "m-3");
     weatherDivEl.appendChild(forecastDiv);
-
+    const forecastTitle = document.createElement("h4");
+    forecastTitle.textContent = "5-Day Forecast";
+    forecastTitle.classList.add("fw-bold");
+    forecastDiv.appendChild(forecastTitle);
     for (let i = 0; i < data.list.length; i++) {
         if (data.list[i].dt_txt.indexOf("15:00:00") !== -1) {
+
             const forecastCard = document.createElement("div");
             forecastCard.classList.add("card", "m-2", "p2", "col-2", "shadow");
             forecastDiv.appendChild(forecastCard);
