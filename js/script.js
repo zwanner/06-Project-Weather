@@ -273,7 +273,7 @@ function displayForecast(data) {
 
             const forecastCardTitle = document.createElement("h5");
             forecastCardTitle.classList.add("card-title", "fs-6", "fw-bold", "bg-primary", "text-white", "rounded-3", "p-1", "text-center", "shadow-sm");
-            forecastCardTitle.textContent = dayjs(data.list[i].dt_txt).format("MM/DD");
+            forecastCardTitle.textContent = dayjs(data.list[i].dt_txt).format("ddd");
             forecastCardBody.appendChild(forecastCardTitle);
 
             const forecastCardBodyTemp = document.createElement("p");
