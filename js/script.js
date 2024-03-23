@@ -3,6 +3,7 @@ const colormodeButtonIcon = document.querySelector("#color-mode-icon");
 const navbarEl = document.querySelector("#navbar");
 const historyEl = document.querySelector("#history-div");
 const weatherDivEl = document.querySelector("#weather-div");
+const creditDivEl = document.querySelector("#credit-div");
 const searchButtonEl = document.querySelector("#city-search-btn");
 const searchInputEl = document.querySelector("#search-input");
 const searchFormEl = document.querySelector("#search-form");
@@ -10,8 +11,11 @@ const footerEl = document.querySelector("#footer");
 
 const apiKey = "139c23aa82a9dcd888cb7e4791ed5d1a";
 
+//add default search history
 let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
-
+// if (searchHistory.length < 1) {
+//     searchHistory = ["Philadelphia", "New York", "Los Angeles", "Chicago", "Houston"];
+// }
 
 //switches color mode between light and dark
 function switchColorMode() {
@@ -53,6 +57,9 @@ function setColorMode() {
         //change footer color to dark
         footerEl.classList.remove("bg-light", "text-dark");
         footerEl.classList.add("bg-dark", "text-light");
+        //change creditDiv color to dark
+        creditDivEl.classList.remove("bg-light", "text-dark");
+        creditDivEl.classList.add("bg-dark", "text-light");
     } else {
         //change body theme to light
         document.body.setAttribute("data-bs-theme", "light");
@@ -64,7 +71,7 @@ function setColorMode() {
         colormodeButtonIcon.classList.add("bi-sun-fill");
         //change button color to light
         colormodeButton.classList.remove("bg-light", "text-dark");
-        colormodeButton.classList.add("bg-dark", "text-liht");
+        colormodeButton.classList.add("bg-dark", "text-light");
         //change navbar color to light
         navbarEl.classList.remove("bg-dark", "text-light");
         navbarEl.classList.add("bg-light", "text-dark");
@@ -77,6 +84,9 @@ function setColorMode() {
         //change footer color to light
         footerEl.classList.remove("bg-dark", "text-light");
         footerEl.classList.add("bg-light", "text-dark");
+        //change creditDiv color to light
+        creditDivEl.classList.remove("bg-dark", "text-light");
+        creditDivEl.classList.add("bg-light", "text-dark");
     }
 }
 
@@ -84,6 +94,9 @@ function setColorMode() {
 function searchWeather(event) {
     event.preventDefault();
     const searchValue = searchInputEl.value;
+    if (searchValue === "") {
+        return;
+    }
     console.log(searchValue);
     searchInputEl.value = "";
     searchHistory.push(searchValue);
@@ -268,6 +281,11 @@ function displayForecast(data) {
             forecastCardBodyHumidity.classList.add("card-text");
             forecastCardBodyHumidity.textContent = `${data.list[i].main.humidity}%`;
             forecastCardBody.appendChild(forecastCardBodyHumidity);
+
+            const forcastCardBodyWindSpeed = document.createElement("p");
+            forcastCardBodyWindSpeed.classList.add("card-text");
+            forcastCardBodyWindSpeed.textContent = `${data.list[i].wind.speed} MPH`;
+            forecastCardBody.appendChild(forcastCardBodyWindSpeed);
 
             const forecastCardBodyWeatherType = document.createElement("p");
             forecastCardBodyWeatherType.classList.add("card-text");
